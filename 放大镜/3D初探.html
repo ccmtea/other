@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3D初探</title>
+	<style>
+		*{margin:0;padding:0;}
+		.box{position: relative; width:500px;height:500px;margin:0 auto;border:1px solid red;}
+		.img{position: absolute;width:100%;height:100%;margin-top:100px; text-align: center;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="img">
+			<img src="images/2.jpg" alt="">
+		</div>
+	</div>
+<script>
+(function(window, $){
+    var _default = {
+        target: '.up',
+        deg: [3, 3],
+        translateZ: 80,
+        scale: .8
+    };
+ 
+    $.fn.magicHover = function(cfg) {
+        var config = $.extend({}, _default, cfg),
+            center = [], // center: 鼠标move区域中心点坐标
+            mouseCoord = [], // mouseCoordinates: 鼠标当前位置坐标
+            wrapCoord = [], // wrapCoordinates: 鼠标move区域左上角坐标
+            deg = config.deg; // X/Y方向的最大扭转角度(deg)
+        return this.each(function(idx, wrap){
+            $(wrap).on('mousemove', function(ev){
+                ev.preventDefault();
+                var _this = $(this), rotate;
+                mouseCoord[0] = ev.clientX + $(window).scrollLeft();
+                mouseCoord[1] = ev.clientY + $(window).scrollTop();
+                wrapCoord[0] = _this.offset().left;
+                wrapCoord[1] = _this.offset().top;
+                center[0] = wrapCoord[0] + _this.width() / 2;
+                center[1] = wrapCoord[1] + _this.height() / 2;
+                // rotate: 根据当前鼠标位置相对于区域中心位置百分比计算出当前X/Y方向的扭转角度(deg)
+                rotate = [-(center[0] - mouseCoord[0]) / (center[0] - wrapCoord[0]) * deg[0], (center[1] - mouseCoord[1]) / (center[1] - wrapCoord[1]) * deg[1]];
+                // perspectiveOrigin: 视觉观察点相对于鼠标move区域左上角的百分比(0-1)
+                perspectiveOrigin = [0.5 + (center[0] - mouseCoord[0]) / (center[0] - wrapCoord[0]) * 0.5, 0.5 + (center[1] - mouseCoord[1]) / (center[1] - wrapCoord[1]) * 0.5];
+                _this.css('perspectiveOrigin', perspectiveOrigin[0] * 100 + '%' + ' ' + perspectiveOrigin[1] * 100 + '%');
+                _this.find(config.target).css('transform', 'scale(' + config.scale + ') translateZ(' + Math.abs(config.translateZ) + 'px) rotateX(' + rotate[1] + 'deg) rotateY(' + rotate[0] + 'deg)');
+            }).on('mouseout', function(ev){
+                var _this = $(this);
+                _this.css('perspectiveOrigin', '50% 50%');
+                _this.find(config.target).css('transform', 'scale(' + config.scale + ') translateZ(' + Math.abs(config.translateZ) + 'px) rotateX(0) rotateY(0)');
+            });
+        });
+    };
+})(window, jQuery);
+</script>
+</body>
+</html>
