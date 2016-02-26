@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tab</title>
+	<style>
+		*{margin:0;padding:0;}
+		ul li{list-style: none;}
+		.sidebar{width:300px;margin:0 auto;}
+		.nav:after{content:"";display: block;clear:both;}
+		.nav li{
+			float: left;
+			position: relative;
+			padding:10px 20px;
+			margin-bottom: -1px;
+			border:1px solid transparent;
+			border-bottom-color: #e8e8e8;
+			background: #fff;z-index: 10;
+			cursor: pointer;
+		}
+		.nav li.active{border:1px solid #e8e8e8;border-bottom-color: #fff;border-color:#e8e8e8;border-bottom-color: #fff;}
+		.tab{padding:20px 12px 20px 12px;border:1px solid #e8e8e8;background: #fff;}
+		
+	</style>
+</head>
+<body>
+	<div class="sidebar">
+		<ul class="nav" id="nav">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<div class="tab tab1" style="display:block">1</div>
+		<div class="tab tab2" style="display:none">2</div>
+		<div class="tab tab3" style="display:none">3</div>
+	</div>
+	<script>
+		var nav = document.getElementById("nav").getElementsByTagName("li");
+		var tab = document.querySelectorAll(".tab");
+		for(i = 0;i < nav.length; i++){
+			nav[i].index = i;
+			nav[i].onclick = function(){
+				for(var n = 0;n < tab.length; n++){
+					tab[n].style.display="none";
+					nav[n].className = " ";
+				}
+				tab[this.index].style.display = "block";
+				nav[this.index].className = "active";
+			}
+		}
+	</script>
+</body>
+</html>

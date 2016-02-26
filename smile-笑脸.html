@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		body,div{width:100%;min-height: 100%;}
+
+	</style>
+</head>
+<body>
+	<div>
+		<canvas id="canvas" width="600px" height = "600px"></canvas>
+	</div>
+	<script>
+		 var canvas,ctx;
+		 canvas = document.getElementById("canvas");
+		 ctx = canvas.getContext("2d");
+
+		 ctx.fillStyle = "yellow";
+		 ctx.beginPath();
+		 ctx.arc(150,150,100,100, Math.PI * 2, true);
+		 ctx.closePath();
+		 ctx.fill();
+
+		 ctx.fillStyle = "white";
+		 ctx.beginPath();
+		 ctx.arc(110,120,20,20,Math.PI * 2,true);
+		 ctx.closePath();
+		 ctx.fill();
+
+		 ctx.fillStyle = "white";
+		 ctx.beginPath();
+		 ctx.arc(190,120,20,20,Math.PI * 2,true);
+		 ctx.closePath();
+		 ctx.fill();
+
+		 ctx.beginPath();
+		 ctx.moveTo(100,190);
+		 ctx.quadraticCurveTo(150,240,200,190);
+		 ctx.quadraticCurveTo(150,210,100,190);
+		 ctx.closePath();
+		 // ctx.stroke();
+		 ctx.fill();
+	</script>
+</body>
+</html>

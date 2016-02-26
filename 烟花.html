@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>烟花</title>
+	<script src="js/s1.js"></script>
+	<script src="js/s2.js"></script>
+	<style>
+		body,div,ul,li,canvas,p{margin:0;padding:0;}
+		ul li{list-style: none;}
+		.fireworks{position: fixed;width:100%;height:100%;top:0;left:0; background: rgba(0,0,0,.7);}
+		
+		.fireworks ul{width:100%;height:100%;}
+		.fireworks ul li{
+			position: absolute;
+			width:95px;
+			bottom:-100px;
+			-webkit-animation: square 10s infinite;
+      		-webkit-transition-timing-function: linear;
+		}
+		.fireworks ul li img{
+			width:100%;
+			transform: rotate(340deg);
+		}
+		.fireworks ul li:nth-child(1){
+			left:10%;
+			-webkit-animation-delay: 1s;
+	        animation-delay: 1s;
+	        -webkit-animation-duration: 7s;
+		}
+
+		.fireworks ul li:nth-child(2){
+			left:25%;
+			-webkit-animation-delay: 15s;
+        	animation-delay: 15s;
+	        -webkit-animation-duration: 8s;
+		}
+		.fireworks ul li:nth-child(2) img{transform: rotate(340deg);}
+
+		.fireworks ul li:nth-child(3){left:35%;
+			-webkit-animation-delay: 8s;
+        	animation-delay: 8s;
+	        /*-webkit-animation-duration: 6s;*/
+		}
+
+		.fireworks ul li:nth-child(4){left:50%;
+			-webkit-animation-delay: 20s;
+        	animation-delay: 20s;
+	        /*-webkit-animation-duration: 13s;*/
+		}
+		.fireworks ul li:nth-child(4) img{transform: rotate(340deg);}
+
+		.fireworks ul li:nth-child(5){left:65%;
+			-webkit-animation-delay: 1s;
+        	animation-delay: 1s;
+	        /*-webkit-animation-duration: 7s;*/
+		}
+
+		.fireworks ul li:nth-child(6){left:70%;
+			-webkit-animation-delay: 7s;
+        	animation-delay: 7s;
+	        /*-webkit-animation-duration: 20s;*/
+		}
+		.fireworks ul li:nth-child(6) img{transform: rotate(340deg);}
+
+		.fireworks ul li:nth-child(7){left:90%;
+			-webkit-animation-delay: 12s;
+        	animation-delay: 12s;
+	        /*-webkit-animation-duration: 8s;*/
+		}
+		.fireworks ul li:nth-child(7) img{transform: rotate(340deg);}
+
+		.fireworks ul li:nth-child(8){left:100%;
+			-webkit-animation-delay: 5s;
+        	animation-delay: 5s;
+	        /*-webkit-animation-duration: 6s;*/
+		}
+
+		.fireworks ul li:nth-child(9){left:40%;
+			-webkit-animation-delay: 12s;
+        	animation-delay:12s;
+	        /*-webkit-animation-duration: 12s;*/
+		}
+		.fireworks ul li:nth-child(10){left:75%;
+			-webkit-animation-delay: 1s;
+        	animation-delay: 1s;
+	        /*-webkit-animation-duration: 7s;*/
+		}
+		.fireworks ul li:nth-child(11){left:30%;
+			-webkit-animation-delay: 3s;
+        	animation-delay: 3s;
+	        /*-webkit-animation-duration: 20s;*/
+		}
+		.fireworks ul li:nth-child(12){left:5%;
+			-webkit-animation-delay: 8s;
+        	animation-delay: 8s;
+	        /*-webkit-animation-duration: 10s;*/
+		}
+
+		@-webkit-keyframes square{
+			0% {
+			    -webkit-transform: translateY(0);
+			    opacity: 1;
+
+			}
+
+			100% {
+			    -webkit-transform: translateY(-1100%);
+			   opacity: 0;
+			}
+		}
+
+		canvas{background-color:#000000;position:absolute;left:0px;top:0px;z-index:9999;}
+	</style>
+
+</head>
+<body onLoad="init()">
+	<!-- <div class="fireworks">
+		<ul>
+			<li>
+				<img src="img/kong1.png" alt="">
+			</li>
+			<li>
+				<img src="img/kong1.png" alt="">
+			</li>
+			<li>
+				<img src="img/kong1.png" alt="">
+			</li>
+			<li>
+				<img src="img/kong1.png" alt="">
+			</li>
+			<li>
+				<img src="img/kong1.png" alt="">
+			</li>
+			<li>
+				<img src="img/kong1.png" alt="">
+			</li>
+			<li>
+				<img src="img/kong1.png" alt="">
+			</li>
+			<li>
+				<img src="img/kong1.png" alt="">
+			</li>
+			<li>
+				<img src="img/kong1.png" alt="">
+			</li>
+			<li>
+				<img src="img/kong1.png" alt="">
+			</li>
+			<li>
+				<img src="img/kong1.png" alt="">
+			</li>
+			<li>
+				<img src="img/kong1.png" alt="">
+			</li>
+		</ul>
+	</div> -->
+	<!-- <div ></div> -->
+	<canvas id="canvas">Canvas is not supported in your browser.</canvas>
+	<script>
+		var c = document.getElementsByTagName('canvas')[0];
+		if (!c.getContext) alert('Your browser is too old now!Change to chrome ok？');
+		else(function(c, cvs) {
+			//随着窗口调整画布大小
+			var W, H;
+			var up = 0; (onresize = function() {
+				c.width = W = window.innerWidth;
+				c.height = H = window.innerHeight;
+			})();
+			//生成一个烟花
+			function createPT(x, y, r, g, b) {
+				return {
+					r: r,g: g,b: b,
+					x: x,y: y,
+					//轨迹序列
+					pl: [],
+					dx: rnd(20) - 10,
+					dy: rnd(10) - 7,
+					life: 30 + rnd(30),
+					//移动函数，修改加速度和坐标
+					move: function() {
+						this.dx *= .98;
+						this.dy *= .98;
+						this.dy += .22;
+						this.x += this.dx;
+						this.y += this.dy;
+						this.pl.push([this.x, this.y]);
+						//保持轨迹长度
+						if (this.pl.length > 10) this.pl.shift();
+						this.life--;
+					}
+				};
+			}
+			//总烟火数组
+			var B = [];
+			//在x,y位置创建一个烟火
+			function createBoom(x, y) {
+				var q = [],
+				r = rnd(255) | 0,
+				g = rnd(255) | 0,
+				b = rnd(255) | 0;
+				for (var i = 0; i < rnd(16) + 15; i++) q.push(createPT(x, y, r, g, b));
+				B.push(q);
+			}
+			setInterval(function() {
+				cvs.clearRect(0, 0, W, H);
+				//依次绘制烟火
+				for (var n = 0; n < B.length; n++) {
+					var q = B[n];
+					for (var i = 0; i < q.length; i++) {
+						var pt = q[i];
+						pt.move();
+						dq(pt.pl, pt.life / 30, pt.r, pt.g, pt.b);
+						//超过生存周期就消失
+						if (pt.life <= 0) q.splice(i, 1);
+					}
+					//当一个烟火包含的烟花个数为零，则消灭这个烟火
+					if (!B[n].length) B.splice(n, 1);
+				}
+				//每隔一段时间添加一个新烟火
+				if (new Date - up < 3000 + rnd(3000)) return;
+				up = new Date;
+				createBoom(rnd(W / 2) + W / 4, rnd(50) + 50);
+			},20);
+			function rnd(n) {
+				return (n || 1) * Math.random();
+			}
+			function dq(ar, z, r, g, b) {
+				cvs.save();
+				//绘制轨迹。思路是每次都绘制一条透明的轨迹，叠加起来形成一条渐变的样子
+				for (var i = 0; i < ar.length; i++) {
+					cvs.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + Math.abs(.2 * z) + ')';
+					cvs.lineWidth = Math.min(i + 1, 1)*2;
+					cvs.beginPath();
+					cvs.moveTo(ar[i][0], ar[i][1]);
+					for (var j = i + 1; j < ar.length; j++) cvs.lineTo(ar[j][0], ar[j][1]);
+					cvs.stroke();
+				}
+				cvs.restore();
+			}
+		})(c, c.getContext('2d'));
+	</script>
+</body>
+</html>
