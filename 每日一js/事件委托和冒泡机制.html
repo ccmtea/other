@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件委托和冒泡机制</title>
+	<style>
+		*{margin:0;padding:0;}
+		.out{width:400px;height:400px;border:1px solid #cfcfd2;}
+		.inner{width:200px;height:200px;border:1px solid red;}
+	</style>
+</head>
+<body>
+	<div class="out" id="out">
+		<div class="inner" id="inner">
+			Click
+		</div>
+	</div>
+	<script>
+	var a = document.querySelector("div#out");
+	var b = document.querySelector("div#inner");
+
+
+
+	a.addEventListener('click',function(e){
+		alert(e.target+"冒泡阶段")
+	},false);
+
+	a.addEventListener('click',function(e){
+		alert(e.target+"捕获阶段")
+	},true);
+
+	// b.addEventListener('click',function(e){
+	//     e.stopPropagation()
+	//     alert(e.target+'内部元素上的事件')
+	// })
+	</script>
+</body>
+</html>

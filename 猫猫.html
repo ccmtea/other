@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>猫猫</title>
+	<style>
+		*{margin:0 auto;}
+		html,body{width:100%;height: 100%;background:#fff;}
+		.container{width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;}
+		.main{width:60vmin;height:60vmin;position: relative;}
+		.main div{position: absolute;}
+		.head{width:40%;height:34%;left:50%;margin-left:-20%; background: yellow;border-radius: 50%;z-index: 2;
+			background:linear-gradient( #CECECE, transparent ), linear-gradient( -45deg, #EFEFEF, transparent ), linear-gradient( 45deg, #EAEAEA, transparent )
+		}
+		.head:after,.head:before{content:"";position: absolute;top: -3vmin; border-width:0 3vmin 7vmin 3vmin;border-style: solid;border-color:transparent transparent #D2D2D1 transparent;}
+		.head:after{left:1.5vmin;transform: rotate(-22deg);}
+		.head:before{right: 1.5vmin;transform: rotate(22deg);}
+
+		.eye{width: 42%;height: 22%;top: 30%;border-radius: 50%; background: #fff;overflow: hidden;}
+		.eye:after,.eye:before{content:"";position: absolute;}
+		.e1{left: 5%;border-radius:22% 30% 240% 43%;transform: rotate(-15deg);}
+		.e2{right:5%;border-radius:30% 22% 43% 240%;transform: rotate(15deg);}
+		.e1:after,.e2:after{width: 8%;height:100%;background: #000;top: -4%;border-radius: 18%;background: #000;}
+		.e1:after{right: 48%;transform: rotate(10deg);}
+		.e2:after{left: 48%;transform: rotate(-10deg);}
+
+		.nose{width:28%;height: 14%; top:70%;left:38%;}
+		.nose:after,.nose:before{content:"";width:30%;height:50%;border:2px solid #000;border-top:none; position: absolute;}
+		.nose:after{left:34%;border-radius: 10% 21% 55% 44%;}
+		.nose:before{border-right:none;border-radius:21% 10% 44% 55%;z-index: 2;}
+		.tongue{width: 29%;height: 78%;background: #F15F55;top: 56%;left: 22%;border-radius: 10% 10% 200% 200%;}
+		.tongue:before{content: "";position: absolute;border-width: 0px 9px 8px 8px;border-style: solid;border-color: transparent transparent #F15F55 transparent;top: -29%;left: 1%;}
+
+		.beard{border-top:1px solid #000;height:10%;}
+		.bl1,.br1{width:30%;top: 64%;}
+		.bl2,.br2{width:35%;top: 72%;}
+		.bl1,.bl2{left: -10%;}
+		.br1,.br2{right: -10%;}
+		.bl1{border-radius: 41% 0 0 0;}
+		.br1{border-radius: 0 41% 0 0;}
+		.bl2{left:-15%;border-radius: 89% 0 0 0;}
+		.br2{right:-15%;border-radius: 0 89% 0 0;}
+
+
+		.body{width: 46%;height: 12%;background: #ccc;top: 26%;left: 50%;margin-left: -23%;border-radius: 50%;
+			background: linear-gradient( #D6D5D5, transparent ), linear-gradient( -45deg, #E4E4E4, transparent ), linear-gradient( 45deg, #FFFFFF, transparent );}
+		.leg{width: 22%;height: 75%;background: #DCDBDB;top: 29%;}
+		.leg1{left: 0;border-radius: 113% 159% 105% 105%;}
+		.leg2{right:0;border-radius: 159% 113% 105% 105%;}
+		.leg1:before,.leg1:after,.leg2:before,.leg2:after{content: "";position: absolute;width: 50%;height: 50%;bottom: 0;border: 1px solid #BFBEBE;border-top: none;}
+		.leg1:after,.leg2:after{left: 50%;border-left: none;border-radius: 10% 0% 78% 37%;}
+		.leg1:before, .leg2:before {border-radius: 10% 10% 40% 60%;}
+
+		.tail{position: absolute;width: 12%;height: 15%;top: -14%;left: 50%;margin-left:-6%;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="main">
+			<div class="head">
+				<div class="eye e1"></div>
+				<div class="eye e2"></div>
+				<div class="nose">
+					<div class="tongue"></div>
+				</div>
+				<div class="beard bl1"></div>
+				<div class="beard bl2"></div>
+				<div class="beard br1"></div>
+				<div class="beard br2"></div>
+			</div>
+			<div class="body">
+				<div class="leg leg1"></div>
+				<div class="leg leg2"></div>
+			</div>
+			<canvas class="tail" id="canvas"></canvas>
+		</div>
+	</div>
+	<script>
+	var canvas = document.getElementById("canvas");
+	var g = canvas.getContext("2d");
+	g.beginPath();
+	g.strokeStyle="#ADADAC";
+	g.moveTo(0,0);
+	g.bezierCurveTo(200,0, 0,200, 200,200);
+	g.stroke();
+
+	g.beginPath();
+	g.moveTo(0,0);
+	g.bezierCurveTo(100,0, 0,200, 200,200);
+	g.stroke();
+	</script>
+</body>
+</html>

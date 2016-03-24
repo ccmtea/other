@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标移过显示车标</title>
+	<style>
+		* {
+            margin: 0;
+            padding: 0;
+        }
+        .clearfix:after {
+            clear: both;
+            display: block;
+            visibility: hidden;
+            height: 0;
+            line-height: 0;
+            content: '';
+        }
+        #container {
+            width: 560px;
+            margin: 10px auto;
+            padding: 10px 0 0 10px;
+            border: solid 1px;
+        }
+        #container h2 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        #cars {
+            list-style: none;
+        }
+        #cars li {
+            position: relative;
+            float: left;
+            width: 80px;
+            height: 80px;
+            padding: 10px;
+            border: solid 1px;
+            margin: 0 10px 10px 0;
+            font-size: 12px;
+            font-weight: bold;
+            color: #666;
+            background-color: #F0F0F0;
+        }
+        #cars li a {
+            display: none;
+            position: absolute;
+            left: -14px;
+            top: -14px;
+            width: 128px;
+            height: 128px;
+            border: solid 2px #999;
+            font-size: 0;
+        }
+        #cars li a.current {
+            display: block;
+            z-index: 1;
+        }
+	</style>
+</head>
+<body>
+	<div id="container">
+        <h2>名车车标展示-鼠标移过显示车标</h2>
+        <ul id="cars" class="clearfix">
+            <li>BMW <br> 宝马汽车
+                <a href="javascript:void(0);" style="background: url(http://pandoraui.github.io/learning-javascript/lesson2/img/1.jpg) no-repeat"></a>
+            </li>
+            <li>Alfa Romeo <br> 阿尔法-罗米欧
+                <a href="javascript:void(0);" style="background: url(http://pandoraui.github.io/learning-javascript/lesson2/img/2.jpg) no-repeat"></a>
+            </li>
+            <li>Skoda <br> 斯柯达
+                <a href="javascript:void(0);" style="background: url(http://pandoraui.github.io/learning-javascript/lesson2/img/3.jpg) no-repeat"></a>
+            </li>
+            <li>Volkswagen <br> 大众汽车
+                <a href="javascript:void(0);" style="background: url(http://pandoraui.github.io/learning-javascript/lesson2/img/4.jpg) no-repeat"></a>
+            </li>
+            <li>Saab <br> 萨布
+                <a href="javascript:void(0);" style="background: url(http://pandoraui.github.io/learning-javascript/lesson2/img/5.jpg) no-repeat"></a>
+            </li>
+            <li>Lamborghini <br> 兰博基尼
+                <a href="javascript:void(0);" style="background: url(http://pandoraui.github.io/learning-javascript/lesson2/img/6.jpg) no-repeat"></a>
+            </li>
+            <li>Porsche <br> 保时捷
+                <a href="javascript:void(0);" style="background: url(http://pandoraui.github.io/learning-javascript/lesson2/img/7.jpg) no-repeat"></a>
+            </li>
+            <li>Peugeot <br> 标致
+                <a href="javascript:void(0);" style="background: url(http://pandoraui.github.io/learning-javascript/lesson2/img/8.jpg) no-repeat"></a>
+            </li>
+            <li>Mercedes1 <br> 梅赛德斯 奔驰
+                <a href="javascript:void(0);" style="background: url(http://pandoraui.github.io/learning-javascript/lesson2/img/9.jpg) no-repeat"></a>
+            </li>
+            <li>Buick <br> 别克汽车
+                <a href="javascript:void(0);" style="background: url(http://pandoraui.github.io/learning-javascript/lesson2/img/10.jpg) no-repeat"></a>
+            </li>
+        </ul>
+    </div>
+    <script>
+   var con = document.getElementById("container");
+    </script>
+</body>
+</html>
