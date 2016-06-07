@@ -1,0 +1,39 @@
+在移动端，我们常常会设置定义边框属性。可是你会发现同样1px像素的边框在ip6，和ip6s等边框会变粗。
+
+为什么呢？？？？
+ 
+因为retina（视网膜）,retain是一种具备超高像素密码的液晶屏！就诞生了dpr1,dpr2,dpr3。
+那么，有哪些方法可以解决呢？
+1、
+   border:0.5px;
+   so easy!!!! but.....在ios7，android等，0.5会被显示为0。
+
+2、
+  viewport+rem;
+  
+  devicePixelRatio = 2;
+  <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+  
+  devicePixelRation = 3;
+  <meta name="viewport" content="initial-scale=0.3333333333333333, maximum-scale=0.3333333333333333, minimum-scale=0.3333333333333333, user-scalable=no">
+  
+ 3、transform: scale(0.5)
+ 
+    .after-scale{
+      position: relative;
+    }
+    .after-scale:after{
+      content:"";
+      position: absolute;
+      bottom:0px;
+      left:0px;
+      right:0px;
+      border-bottom:1px solid #c8c7cc;
+      -webkit-transform:scaleY(.5);
+      -webkit-transform-origin:0 0;
+      z-index:-1;
+    }
+    ok，边框美美哒，阔四我元素里的a标签不能点击啦，肿么办，肿么办....我要转三圈....圈...圈...so easy啦。
+  
+个人是蛮喜欢这三种方式。
+像border-image|background-image|box-shadow。我个人不喜欢。反正又没淫看，我都不说了....
