@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content = "initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="telephone=no" name="format-detection" />
+	<title>music</title>
+	<style>
+		*{margin:0;padding:0;}
+		html,body{height:100%;background: #000;}
+		.music{width:120px;height:80px;position: absolute;margin-left:-60px;margin-top:-40px;top:50%;left:50%;text-align: center;}
+		.music>i{position: absolute;width:2px;border-top:5px solid;left:50%;color:#fff;bottom:-1px;}
+		.music>i:nth-of-type(1){margin-left:-10px;}
+		.music>i:nth-of-type(2){margin-left:-14px;}
+		.music>i:nth-of-type(3){margin-left:-18px;}
+		.music>i:nth-of-type(4){margin-left:-6px;}
+		.music>i:nth-of-type(5){margin-left:-2px;}
+		.music>i:nth-of-type(6){margin-left:2px;}
+		.music.active>i:nth-of-type(1) {
+		    -webkit-animation:waveAudio .66s ease-in infinite;
+		    animation:waveAudio .66s ease-in infinite
+		}
+		.music.active>i:nth-of-type(2) {
+		    -webkit-animation:waveAudio 1s .2s ease-out infinite;
+		    animation:waveAudio 1s .2s ease-out infinite
+		}
+		.music.active>i:nth-of-type(3) {
+		    -webkit-animation:waveAudio .72s linear infinite;
+		    animation:waveAudio .72s linear infinite
+		}
+		.music.active>i:nth-of-type(4) {
+		    -webkit-animation:waveAudio .63s .3s ease-in-out infinite;
+		    animation:waveAudio .63s .3s ease-in-out infinite
+		}
+		.music.active>i:nth-of-type(5) {
+		    -webkit-animation:waveAudio 1.2s infinite;
+		    animation:waveAudio 1.2s infinite
+		}
+		.music.active>i:nth-of-type(6) {
+		    -webkit-animation:waveAudio .9s ease-in infinite;
+		    animation:waveAudio .9s ease-in infinite;
+		    -webkit-transform:scaleY(.9);
+		    transform:scaleY(.9)
+		}
+		@-webkit-keyframes waveAudio {
+		    0% {
+		        border-top-width:2px
+		    }
+		    50% {
+		        border-top-width:12px
+		    }
+		    100% {
+		        border-top-width:3px
+		    }
+		}
+
+	</style>
+</head>
+<body>
+	<div class="music">
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+		<i></i>
+	</div>
+	 <script src="http://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+	 <script>
+	 $(".music").click(function(){
+	 	$(".music").toggleClass("active");
+	 })
+	 </script>
+</body>
+</html>
