@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>三角阴影</title>
+	<style>
+		*{margin:0;padding:0;}
+		body{text-align: center;height: 100%;background: #ccc}
+		img{margin-top: 50px;-webkit-filter: drop-shadow(5px 5px 10px red);}
+		.boxShadow{width:500px;height:300px;margin:100px auto 0;border:1px solid #fff;background: #fff; position: relative;box-shadow: 1px 1px 10px red;}
+		.cor{position: absolute;display: inline-block;border: 50px solid transparent;border-right-color: #fff;left: -100px;width: 0;height: 0;top: calc(150px - 50px);}
+		.cor-box{position: absolute;width: 55px;height: 100px;top: -49px;left: -6px;overflow: hidden;}
+		.cor-boxs{position: absolute;width: 67px;height: 67px;box-shadow: 0px -10px 0 #fff,-10px 0px 0px #fff,0px 0px 10px red;transform: rotate(135deg);left: 20px;top: 16px;}
+		
+		.dropShadow{width:500px;height:300px;margin:100px auto 0;border:1px solid #fff;background: #fff; position: relative;
+			-webkit-filter: drop-shadow(1px 1px 5px red);
+			-moz-filter: drop-shadow(1px 1px 5px red);
+			-ms-filter: drop-shadow(1px 1px 5px red);
+		}
+
+	</style>
+</head>
+<body>
+	<img src="images/car.png" alt="">
+	<div class="boxShadow">
+		<div class="cor">
+			<i class="cor-box">
+				<b class="cor-boxs">
+					
+				</b>
+			</i>
+		</div>
+	</div>
+
+	<div class="dropShadow">
+		<i class="cor"></i>
+	</div>
+</body>
+</html>
