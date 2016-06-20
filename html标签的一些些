@@ -1,0 +1,88 @@
+在每个项目相信都有一个reset。人们眼中的reset是重置，让需要我们征服的对象能统一的渲染。
+
+一直以来，我所用的reset都是所在公司一直传承使用，我不曾想过为什么，或者是这样吗？
+本人才疏学浅，所见所识太有限。
+所以就把html标签都来try - try.
+相信很多写css的对这样的代码肯定很熟悉：
+body,div,dl,dt,dd,ul,ol,li,h1, h2, h3, h4, h5, h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {margin: 0;padding: 0;}
+
+然后想想，真的有这么多标签需要margin清0？真的存在margin值么？又真的跟padding有关系么？
+我做了一个很浅显的总结，顺便把一些标签的第一印象我自己做个笔记。
+
+我分两类，一类为标签默认存在margin值，一类即是不存在。
+
+存在：
+body,h1,h2,h3,h4,h5,h6,p,ol,ul,dl(dd在渲染时，会自动缩进),
+hr(水平分割线),
+pre(该元素的空格会全部显示出来),
+fieldset(存在内边距，边框。代表控件组，和<legend>配合使用,legend为标题)，
+menu(存在内边距)
+figure(元素代表一段独立的内容, 经常与说明(caption) <figcaption> 配合使用, 并且作为一个独立的引用单元。当它属于主体(main flow)时，它的位置独立于主体。这个标签经常是在主文中引用的图片，插图，表格，代码段等等，当这部分转移到附录中或者其他页面时不会影响到主体)
+blockquote(代表其中的文字为引用类容若引文来源于网络，通常在渲染时，这部分的内容会有一定的缩进。则可以将原内容的出处URL地址设置到 cite 特性上，若要以文本的形式告知读者引文的出处时，可以通过 <cite> 元素，若引文来源于网络，则可以将原内容的出处 URL 地址设置到 cite 特性上，若要以文本的形式告知读者引文的出处时，可以通过 <cite> 元素)
+
+
+不存在：
+section,nav,article,aside,header,footer,address(默认字体斜体),main,li,dt,figcaption(与figure配合使用，figure为主体),canvas,svg,form,
+summary(<details> 元素的综述 或标题 ),
+details(用户可以(点击)获取额外信息或控件的小部件),
+video(视频 及其视频文件和字幕，并提供了播放视频的用户界面),audio(代表一段声音 ，或音频流)
+
+end！
+
+以下为行业元素的原始特性：
+a(默认鼠标移上去是没有抓手样式，需要cursor: pointer;)
+em(斜体,作用于强调)
+strong(加粗，作用于重要文字)
+small(代表注释，如免责声明，版权声明)
+s(代表不准确不相关文字,默认中间下划线)
+cite(默认斜体)
+q(这个标签是用来引用短的文本)
+dfn(默认样式斜体)
+abbr(省略或缩写)
+data
+time
+code(代码)
+var(变量)
+samp(输出)
+kbd(用户输入，键盘或者语音)
+sub,sup(上标和下标)
+i(默认样式斜体,代表不同性质的文字)
+b(默认为粗体，需要被关注的文字)
+b(需要下划线的注释)
+mark(引用，标记)
+bdi
+bdo
+span
+br
+menuitem(用户可以点击的菜单项)
+
+ins(默认自带下划线，增加到文档的内容)
+del(默认中间下划线，定义从文档移除的类容)
+wbr(建议换行)
+
+
+img
+iframe(默认自带边框,代表内联框架)
+embed
+object(外部资源，和parem配合使用，object为主体)
+parem(和object配合使用，object为主体)
+source(为 <video> 或 <audio> 这类媒体元素指定媒体源)
+track(为 <video> 或 <audio> 这类媒体元素指定文本轨道（字幕）)
+map(与 <area> 元素共同定义图像映射 区域)
+area(与 <map> 元素共同定义图像映射 区域)
+math(数学公式)
+
+//表单
+label(代表控件标题)
+input(自带边框)
+button(自带边框,块级元素)
+select(自带边框，块级元素，下拉列表)
+datalist(代表提供给其他控件的一组预定义选项)
+optgruop(代表一个选项分组)
+option(代表一个 <select> 元素或 <datalist> 元素中的一个选项)
+textarea(多行文本框 )
+keygen (这个元素在 HTML5 中加入	代表一个密钥对生成器 控件。)
+output (这个元素在 HTML5 中加入	代表计算值 。)
+progress (这个元素在 HTML5 中加入	代表进度条 。)
+meter (这个元素在 HTML5 中加入	代表滑动条 。)
+
