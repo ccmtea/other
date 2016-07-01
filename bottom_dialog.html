@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>底部弹层</title>
+	<style>
+		*{margin:0;
+			padding:0;
+		}
+		html{height:100%;}
+		html,body{height: 100%;}
+		a{text-decoration: none;}
+		.dislog-background{width:100%;height:100%; background: rgba(0,0,0,.5);}
+		.bottom-dialog{position: fixed;bottom:0;left:0;right:0;transform:translate(0,100%);     transition: transform .3s, -webkit-transform .3s;}
+		.bd-list li{height:100; background: #fff;border-bottom: 1px solid #cfcfd2;}
+		.bd-list li a{display: block;line-height: 100px;text-align: center;font-size:28px;color:#333;}
+
+		.bd-button{margin-top:15px;}
+		.bd-button .bd-a{display: block; line-height:100px;text-align: center;font-size:28px;color:#333;background: #fff;}
+
+		.show{transform:translate(0,0);}
+	</style>
+</head>
+<body>
+	<div class="dislog-background"></div>
+	<div class="bottom-dialog show">
+		<ul class="bd-list">
+			<li>
+				<a href="#">你想怎样</a>
+			</li>
+			<li>
+				<a href="#">他想怎样</a>
+			</li>
+			<li>
+				<a href="#">我想怎样</a>
+			</li>
+		</ul>
+		<div class="bd-button">
+			<a href="#" class="bd-a">取消</a>
+		</div>
+	</div>
+</body>
+</html>
