@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机背景颜色</title>
+    <style>
+        *{margin:0;padding:0;}
+        ul li{list-style: none;}
+        ul{
+            display: flex;
+            height:100vh;}
+        ul li{flex:1;background: #DC8EA3;}
+        .button{
+            margin:0 8px;
+            padding:8px;
+            background: rgba(0,0,0,.5);
+            border-radius:0 0 10px 10px;
+            overflow: hidden;
+        }
+        a{text-decoration: none;}
+        .add{
+            float: left;}
+        .add:after{content:"+";
+            
+        }
+        .del{
+            float: right;}
+        .del:after{content:"X";}
+        .add:after,.del:after{
+            display: block;
+            width: 1.3rem;
+            border-radius: 100%;
+            background: #fff;
+            text-align: center;
+            line-height: 1.3rem;
+        }
+    </style>
+</head>
+<body>
+    <ul class="box">
+        <li>
+            <div class="button">
+                <a href="#" class="add"></a>
+                <a href="#" class="del"></a>
+            </div>
+        </li>
+    </ul>
+
+<script>
+    var colors = ["#DA9ACC","#DC8EA3","#A28EDC","#8EC2DC","#8EDCD9","#9DDC8E","#DCD78E","#DCA48E"];
+    var box = document.querySelector(".box");
+    var temp = box.firstElementChild;
+
+    function addColor(temp){
+        var li = temp.cloneNode(true);
+        var color = colors.pop();
+
+        colors.unshift(color);
+
+        li.style.background = color;
+        box.insertBefore(li,temp.nextSibling);
+    }
+
+    box.onclick = function(evt){
+        var button = evt.target;
+
+        if(button.className == "add"){
+            addColor(button.parentNode.parentNode);
+        }
+        else if(button.className == "del"){
+            var li = button.parentNode.parentNode;
+            li.parentNode.removeChild(li);
+        }
+    }
+
+</script>
+</body>
+</html>
