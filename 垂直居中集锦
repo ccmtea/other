@@ -1,0 +1,30 @@
+ex:
+  <style>
+    *{margin:0;padding:0;}
+    html{height:100%;}
+    
+  </style>
+  <div class="dialog-back"></div>
+  
+  
+
+1、
+  <div class="dialog-back"></div>
+  <div class="dialog-main dialog-loca1"></div>
+  style:
+        .dialog-back{position: fixed;width:100%; height:100%;background: rgba(0,0,0,.4);}
+        .dialog-main{position: absolute; width:500px;background: #fff;}
+        .dialog-loca1{height:400px;left:50%;top:50%;margin:-200px 0 0 -250px;}
+        
+      
+2、
+  <div class="dialog-main dialog-loca2">
+    <div class="d2-main"></div>
+  </div>
+  style:
+        .dialog-loca2{position: fixed;width:100%;height:100%;background: rgba(0,0,0,.4);filter:progid:DXImageTransform.Microsoft.gradient(enabled="true", startColorstr="#66000000", endColorstr="#66000000");text-align: center;}
+        .dialog-loca2:after{content:"";display: inline-block;width:0;height:100%;vertical-align: middle;}
+        .d2-main{position: relative;display: inline-block;padding:20px;background:#fff; vertical-align: middle;}
+        
+  
+  
