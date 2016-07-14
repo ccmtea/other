@@ -31,12 +31,22 @@
 	<script>
 	var list = document.getElementById("list").getElementsByTagName("li");
 	var con = document.querySelector(".con");
-	var span = document.createElement("span");
 	for(var i = 0;i<list.length;i++){
 		list[i].index = i;
 		list[i].onclick = function(){
 			var text = list[this.index].innerText;
-			con.appendChild(span).innerText = text;
+			var spanList = document.querySelectorAll(".con span")
+			var isExit = false;
+			for(var i=0;i<spanList.length;i++){
+				if(spanList[i].innerHTML === text){
+					isExit = true
+					break
+				}
+			}
+			if(!isExit){
+				var span = document.createElement("span");
+				con.appendChild(span).innerText = text;
+			}
 		}
 	}
 	</script>
