@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/data.js"></script>
+	<style>
+		*{
+			margin:0 auto;
+		}
+		a{
+			text-decoration:none;
+		}
+		.choise{
+			position:relative;
+			margin-left: 20px;
+		}
+		.address{
+			display:inline-block;
+			padding: 0px 30px 0px 10px;
+			height:25px;
+			line-height:25px;
+			border:1px solid #f0f0f0;
+			position:relative;
+		}
+		.address:after{
+			content:"";
+			position:absolute;
+			width:0px;
+			height:0px;
+			border-width:6px;
+			border-style:solid;
+			border-color:#ccc transparent transparent transparent;
+			right:11px;
+			top:9px;
+		}
+		.address a{
+			color:#313131;
+			font-size:12px;
+
+		}
+		.addxq{
+			position:absolute;
+			width:520px;
+			border:1px solid #f0f0f0;
+			padding:10px;
+			left:0px;
+			top:27px;
+			display:none;
+		}
+		.city-tit{
+			border-bottom: 1px solid #e6e6e6;
+		}
+		.city-tit a.cur{
+			border:1px solid #e6e6e6;
+			border-bottom:#fff;
+		}
+		.city-tit a.cur b{
+			color:red;
+		}
+		.city-tit a.cur i{
+			background: url(images/ui.gif) -462px -40px no-repeat;
+		}
+		.city-tit a{
+			float: left;
+			border: 1px solid #fff;
+			border-bottom: 1px solid #e6e6e6;
+			color: #06C;
+			padding: 0 0 0 10px;
+			height: 25px;
+			line-height: 25px;
+			overflow: hidden;
+			position: relative;
+			background:#fff;
+			z-index: 1;
+			bottom: -2px;
+		}
+		.city-tit a b{
+			font-weight: 400;
+			float: left;
+			font-size:12px;
+			color:#313131;
+		}
+		.city-tit a i{
+			width: 6px;
+			height: 4px;
+			display: inline-block;
+			overflow: hidden;
+			background: url(images/ui.gif) -468px -40px no-repeat;
+			margin: 11px 5px 0;
+		}
+		.city-tit a.close{
+			width: 12px;
+			height: 12px;
+			float: right;
+			background: url(images/ui.gif) -384px -74px no-repeat;
+			padding: 0;
+			border: 0;
+		}
+		.citybox{
+			overflow:hidden;
+		}
+		.gctBox {
+			width: 100%;
+			margin: 8px 0 0;
+			line-height: 50px;
+			text-align: center;
+			color: #ccc;
+			float:left;
+		}
+		.gctBox span {
+			width: 95px;
+			height: 26px;
+			line-height: 26px;
+			padding-left: 8px;
+			float: left;
+			overflow: hidden;
+			text-align: left;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			color:#313131;
+			font-size:12px;
+			cursor: pointer;
+		}
+		.gctBox span:hover{
+			color:red;
+		}
+		
+		.gctBox a {
+			line-height: 26px;
+			padding: 3px 5px;
+			
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="choise">
+		<span class="address">
+			<a href="#" title="">请选择</a>
+		</span>
+		<div class="addxq">
+			<div class="city-tit">
+				<a href="#"  id="province">
+					<i></i>
+				</a>
+				<a href="#"  id="city">
+					<i></i>
+				</a>
+				<a href="#"  id="town">
+					<i></i>
+				</a>
+				<a href="#" class="close">
+				</a>
+				<div style="clear:both"></div>
+			</div>
+			<div class="citybox">
+				<div class="gctBox" id="ctbox_1" style="display: block;">
+				</div>
+				<div class="gctBox" id="ctbox_2" style="display:none"></div>
+				<div class="gctBox" id="ctbox_3" style="display:none"></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(function(){
+			var index;
+			$(".city-tit a:eq(0)").addClass('cur');
+			$(".citybox div:eq(0)").show();
+			$(".city-tit a").click(function(){
+				index = $(this).index();
+				$(this).addClass('cur').siblings().removeClass('cur');
+				$(".citybox div:eq("+index+")").show().siblings().hide();
+			});
+
+			$(".address").click(function(){
+				$(".addxq").css('display','block');
+			});
+
+			$(".close").click(function(){
+				$(".addxq").hide();
+			})
+
+			
+			function init(obj_1,val_1,obj_2,val_2,obj_3,val_3){
+				var addtit=['广东','深圳','福田'];
+				var pindex = 0;
+				var cindex = 0;
+
+				//初始化
+				$("<b value=''>"+addtit[0]+"</b>").appendTo($("#province"));
+				$("<b value=''>"+addtit[1]+"</b>").appendTo($("#city"));
+				$("<b value=''>"+addtit[2]+"</b>").appendTo($("#town"));
+				$(".address").find("a").text(addtit[0]+"省"+addtit[1]+"市"+addtit[2]);
+
+				//初始化ctbox_1
+				// for(var i=0;i<mp.length;i++){
+				// 	if(mp[i]==val_1){
+				// 		pindex= i;
+				// 		$("<span>"+mp[i]+"</span>").appendTo($("#"+obj_1));
+
+				// 	}else{
+				// 		$("<span>"+mp[i]+"</span>").appendTo($("#"+obj_1));
+
+				// 	}
+				// }
+				// for(c=0;c<mc[pindex].length;c++){
+				// 	if(mc[pindex][c]==val_2){
+				// 		cindex=c;
+
+				// 		$("<span>"+mc[pindex][c]+"</span>").appendTo($("#"+obj_2));
+				// 	}else{
+				// 		$("<span>"+mc[pindex][c]+"</span>").appendTo($("#"+obj_2));
+				// 	}
+				// }
+
+				// for(m=0;m<mh[pindex][cindex].length;m++){
+
+				// 	if(mh[pindex][cindex][m] == val_3){
+				// 		$("<span>"+mh[pindex][cindex][m]+"</span>").appendTo($("#"+obj_3));
+				// 	}else{
+				// 		$("<span>"+mh[pindex][cindex][m]+"</span>").appendTo($("#"+obj_3));
+				// 	}
+				// }
+
+				for(var l=0;l<mp.length;l++){
+					$("<span>"+mp[l]+"</span>").appendTo($("#"+obj_1));
+					$("#"+obj_2).empty();
+					
+				}
+				if($("#"+obj_1) != " "){
+					for(b=0;b<mc[5].length;b++){
+						$("<span>"+mc[5][b]+"</span>").appendTo($("#"+obj_2));
+					}
+				}
+
+				if($("#"+obj_2) != " "){
+					for(e=0;e<mh[5][14].length;e++){
+						$("<span>"+mh[5][14][e]+"</span>").appendTo($("#"+obj_3));
+					}
+				}
+
+
+				
+
+				$("#"+obj_1+" span").click(function(){
+					pindex =$(this).index();
+					$("#"+obj_2).empty();
+					for (k=0;k<mc[pindex].length;k++){
+						$("<span>"+mc[pindex][k]+"</span>").appendTo($("#"+obj_2));
+					}
+
+					$(".city-tit a:eq(1)").addClass('cur').siblings().removeClass('cur');
+					$(".citybox div:eq(1)").show().siblings().hide();
+
+					$("#"+obj_3).empty();
+					var ptext= $(this).text();
+					$("#province").find("b").text(ptext);
+
+					$("#city").find('b').text("请选择市");
+					$("#town").find('b').text("请选择区县");
+				});
+
+
+
+
+				//响应obj_2的change事件	
+				$(document).on("click","#"+obj_2+" span",function(){
+					cindex = $(this).index();
+					//清空h
+					$("#"+obj_3).empty();
+					for (j=0;j<mh[pindex][cindex].length;j++){
+						$("<span>"+mh[pindex][cindex][j]+"</span>").appendTo($("#"+obj_3));
+					}
+					$(".city-tit a:eq(2)").addClass('cur').siblings().removeClass('cur');
+					$(".citybox div:eq(2)").show().siblings().hide();
+
+					var ctext = $(this).text();
+					$("#city").find("b").text(ctext);
+					$("#towm").find('b').text("请选择区县");
+				});
+
+				$(document).on("click","#"+obj_3+" span",function(){
+					var ttext= $(this).text();
+					$("#town").find("b").text(ttext);
+
+					$(".addxq").hide();
+
+					var pz =$("#province").find("b").text();
+					var cz =$("#city").find("b").text();
+					var tz =$("#town").find("b").text();
+					$(".address").find('a').text(pz+"省"+cz+"市"+tz);
+				});
+
+			}
+			$(document).ready(function(){init("ctbox_1","","ctbox_2","","ctbox_3"," ");});
+		});
+	</script>
+</body>
+</html>
