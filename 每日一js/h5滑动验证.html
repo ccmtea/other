@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>h5滑动验证</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        html,body{
+            height:100%;
+            background: #dedede;
+        }
+        .silder{
+            position: relative;
+            width:400px;
+            height:60px;
+            margin:0 auto;
+            background: #ccc;
+        }
+        .silder-btn{
+            position: absolute;
+            width:60px;
+            height:60px;
+            top:0;
+            left:0;
+            background: #fff;
+            cursor: pointer;
+        }
+        .silder-btn:after,.silder-btn:before{
+            content:"";
+            position: absolute;
+            width:20px;
+            height:20px;
+            top:20px;
+            border:none;
+            border-top:1px solid #ccc;
+            border-left:1px solid #ccc;
+            transform: rotate(135deg);
+        }
+        .silder-btn:after{
+            left:8px;
+        }
+        .silder-btn:before{
+            left:18px;
+        }
+
+        .track{
+            position: absolute;
+            width:0;
+            height:100%;
+            top:0;
+            left:0;
+            overflow: hidden;
+        }
+        .bg{
+            width:400px;
+            height:60px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="silder">
+        <div class="silder-btn"></div>
+        <div class="track">
+            <div class="bg"></div>
+        </div>
+    </div>
+	<script src="../js/hammer.js"></script>
+	<script src="../js/zepto.min.js"></script>
+    <script>
+        $(function(){
+            var hammertime = new Hammer(document.querySelector(".silder")),
+                curLeft,
+                change,
+                curWidth,
+                parentWidth,
+                startLeft,
+                endLeft,
+                startWidth;
+            hammertime
+                .on('panstart',function(e){
+                    curLeft = $(".silder-btn").offset().left;
+                    startLeft = ( $(".silder-btn").offset().left)-curLeft;
+                    startWidth = $(".track").width;
+                    parentWidth = $(".silder").width();
+                })
+                .on('panmove',function(e){
+		    		endLeft = e.deltaX;
+                    change =endLeft - startLeft;
+                    curWidth = parentWidth-60;
+                    if(change>=curWidth){
+                        $(".silder-btn").animate({'left':curWidth},0);
+                        $(".track").animate({'width':curWidth},0);
+                    }else if(change<=0){
+                        $(".silder-btn").animate({'left':0});
+                        $(".track").animate({'width':0});
+                    }else{
+                        $(".silder-btn").animate({'left':change},0);
+                        $(".track").animate({'width':change},0);
+                    }
+                    
+                    console.log(change);
+                })
+                .on('panend',function(){
+                    if(change<curWidth && change>0){
+                        $(".silder-btn").animate({'left':0},200);
+                        $(".track").animate({'width':0},200);
+                    }
+                })
+        })
+    </script>
+</body>
+</html>
