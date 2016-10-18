@@ -1,0 +1,18 @@
+在作业中遇到需要代码高亮。
+无奈本渣搜索了半天，发现两篇文章。发现此时搬运工不行了。一直报错，好无奈啊~~
+做个笔记：
+用了vue2.0的自定义指令！
+
+import highlight from 'highlight.js'
+import 'highlight.js/styles/kimbie.light.css'
+Vue.directive('highlight', {
+    // 当绑定元素插入到 DOM 中。
+    inserted: function (el) {
+        highlight.highlightBlock(el)
+    }
+})
+
+页面中你需要指定你是什么语言：这是highlight规定的。
+栗子：
+<pre class="css" v-highlight><pre>
+就酱紫，没办法。家里有个大神~~~~
