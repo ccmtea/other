@@ -1,0 +1,5 @@
+location 总结：
+location.replace(url)  当前页面替换为url，例如：从 A1 ——> B  ——> A2(前身是B、A2和A1是同一个页面)  所以在A2点击的时候 ，先回到A1，然后再回到其他页面。一个页面会有出现两次的可能。
+location.href = url  打开一个新的页面，回退回到上一个页面，不存在覆盖页面。
+location.back()   回到上一个页面，但是不会刷新
+location.go(1)  指定跳转到前几个页面，为负数为向后跳转几个页面。
