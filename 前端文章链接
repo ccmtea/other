@@ -1,0 +1,29 @@
+1、Object.prototype.toString.call(obj)   类型判断种种
+https://github.com/lifesinger/blog/issues/175
+
+2、vue组件通信
+https://www.jianshu.com/p/86af9f91cd30
+
+3、js递归
+https://github.com/mqyqingfeng/Blog/issues/49
+
+4、jQuery 源码解读
+https://github.com/chokcoco/jQuery-
+
+5、js作用域
+http://www.cnblogs.com/xxcanghai/p/5189353.html#!comments
+
+6、js之解
+http://www.cnblogs.com/xxcanghai/p/5189353.html#!comments
+
+7、js原型
+http://enml.github.io/site/2014/06/20/js-prototype/
+
+8、js易错点
+https://juejin.im/post/5ab4ab126fb9a028d4448365
+
+9、commonJs
+http://zhaoda.net/webpack-handbook/reference.html
+
+10、js apply 、call 的详解
+https://github.com/lin-xin/blog/issues/7
